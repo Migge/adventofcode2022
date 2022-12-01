@@ -18,19 +18,23 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteA
 /**
  *  Separates by empty line. Each new string contains one or more \n-separated rows.
  */
-fun List<String>.multiline(): List<String> {
-    var str = ""
-    val multiline = mutableListOf<String>()
+fun List<String>.splitOnEmpty(): List<List<String>> {
+    val res = mutableListOf<List<String>>()
+    var group = mutableListOf<String>()
 
-    this.forEach {
+    forEach {
         if (it.trim().isEmpty()) {
-            multiline.add(str)
-            str = ""
+            res += group
+            group = mutableListOf()
         } else {
-            if (str.isNotEmpty()) str += "\n"
-            str += "$it"
+            group += it
         }
     }
-    if (str.isNotEmpty()) multiline.add(str)
-    return multiline
+    res += group
+    return res
 }
+
+/**
+ * Convenience function for converting string list to int list.
+ */
+fun List<String>.int(): List<Int> = map { it.toInt() }
