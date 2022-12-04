@@ -38,3 +38,9 @@ fun List<String>.splitOnEmpty(): List<List<String>> {
  * Convenience function for converting string list to int list.
  */
 fun List<String>.int(): List<Int> = map { it.toInt() }
+
+/**
+ * Convenience functions for capturing regex groups.
+ */
+fun Regex.strList(str: String): List<String> = matchEntire(str)!!.destructured.toList()
+fun Regex.intList(str: String): List<Int> = matchEntire(str)!!.destructured.toList().int()

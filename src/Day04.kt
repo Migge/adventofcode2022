@@ -1,10 +1,10 @@
 private fun part1(input: List<String>): Int = input
-    .map { regex.matchEntire(it)!!.destructured.toList().int() }
+    .map { regex.intList(it) }
     .map { it.chunked(2) { (a, b) -> a..b } }
     .count { (x, y) -> x.all { it in y } || y.all { it in x } }
 
 private fun part2(input: List<String>): Int = input
-    .map { regex.matchEntire(it)!!.destructured.toList().int() }
+    .map { regex.intList(it) }
     .map { it.chunked(2) { (a, b) -> a..b } }
     .count { (x, y) -> x.any { it in y } || y.any { it in x } }
 
