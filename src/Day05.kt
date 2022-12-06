@@ -2,8 +2,7 @@ private fun part1(input: List<String>): String {
     val (stacksStr, instrs) = input.splitOnEmpty()
     val stacks = initStacks(stacksStr)
 
-    instrs.forEach {
-        val (nr, from, to) = regex.intList(it)
+    for ((nr, from, to) in instrs.ints()) {
         repeat (nr) {
             stacks[to-1].addLast(stacks[from-1].removeLast())
         }
@@ -15,8 +14,7 @@ private fun part2(input: List<String>): String {
     val (stacksStr, instrs) = input.splitOnEmpty()
     val stacks = initStacks(stacksStr)
 
-    instrs.forEach {
-        val (nr, from, to) = regex.intList(it)
+    for ((nr, from, to) in instrs.ints()) {
         val stack = ArrayDeque<Char>()
         repeat (nr) {
             stack.addFirst(stacks[from-1].removeLast())
@@ -38,8 +36,6 @@ private fun initStacks(stacksStr: List<String>): Array<ArrayDeque<Char>> {
     }
     return stacks
 }
-
-private val regex = """move (\d+) from (\d+) to (\d+)""".toRegex()
 
 fun main() {
     val testInput = readInput("Day05_test")

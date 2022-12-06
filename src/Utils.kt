@@ -34,15 +34,27 @@ fun List<String>.splitOnEmpty(): List<List<String>> {
     return res
 }
 
+private val regexInt = """\d+""".toRegex()
+
 /**
- * Convenience function for converting string list to int list.
+ * Converts string list to int list.
  */
 fun List<String>.int(): List<Int> = map { it.toInt() }
 
 /**
+ * Finds all ints in each string.
+ */
+fun List<String>.ints(): List<List<Int>> = map { it.ints() }
+
+/**
+ * Returning all found ints in the string
+ */
+fun String.ints(): List<Int> = regexInt.findAll(this).map { it.value.toInt() }.toList()
+
+/**
  * Convenience functions for capturing regex groups.
  */
-fun Regex.strList(str: String): List<String> = matchEntire(str)!!.destructured.toList()
-fun Regex.intList(str: String): List<Int> = matchEntire(str)!!.destructured.toList().int()
+fun Regex.strs(str: String): List<String> = matchEntire(str)!!.destructured.toList()
+fun Regex.ints(str: String): List<Int> = strs(str).int()
 
 fun Iterable<Char>.join(): String = this.joinToString("")

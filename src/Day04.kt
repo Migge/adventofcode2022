@@ -1,14 +1,12 @@
 private fun part1(input: List<String>): Int = input
-    .map { regex.intList(it) }
+    .ints()
     .map { it.chunked(2) { (a, b) -> a..b } }
     .count { (x, y) -> x.all { it in y } || y.all { it in x } }
 
 private fun part2(input: List<String>): Int = input
-    .map { regex.intList(it) }
+    .ints()
     .map { it.chunked(2) { (a, b) -> a..b } }
     .count { (x, y) -> x.any { it in y } || y.any { it in x } }
-
-private val regex = """(\d+)-(\d+),(\d+)-(\d+)""".toRegex()
 
 fun main() {
     val testInput = readInput("Day04_test")
