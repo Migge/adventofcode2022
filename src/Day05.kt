@@ -8,7 +8,7 @@ private fun part1(input: List<String>): String {
             stacks[to-1].addLast(stacks[from-1].removeLast())
         }
     }
-    return stacks.toList().map { it.last() }.joinToString("")
+    return stacks.toList().map { it.last() }.join()
 }
 
 private fun part2(input: List<String>): String {
@@ -23,7 +23,7 @@ private fun part2(input: List<String>): String {
         }
         stacks[to-1].addAll(stack)
     }
-    return stacks.toList().map { it.last() }.joinToString("")
+    return stacks.toList().map { it.last() }.join()
 }
 
 private fun initStacks(stacksStr: List<String>): Array<ArrayDeque<Char>> {

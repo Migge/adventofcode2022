@@ -7,7 +7,7 @@ private fun markerIndex(input: String, length: Int) = input
     .windowed(length)
     .map { it.distinct() }
     .first { it.size == length }
-    .joinToString("")
+    .join()
     .let { input.indexOf(it) + length }
 
 fun main() {

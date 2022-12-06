@@ -44,3 +44,5 @@ fun List<String>.int(): List<Int> = map { it.toInt() }
  */
 fun Regex.strList(str: String): List<String> = matchEntire(str)!!.destructured.toList()
 fun Regex.intList(str: String): List<Int> = matchEntire(str)!!.destructured.toList().int()
+
+fun Iterable<Char>.join(): String = this.joinToString("")
